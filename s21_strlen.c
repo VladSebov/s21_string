@@ -9,9 +9,4 @@ size_t  my_strlen(char *str){
         return i;
 }
 
-char *strstr(const char *haystack, const char *needle){
-    int i =0;
-    while (haystack[i] != needle[0]){
-        i++;
-    }
-}
+
