@@ -7,8 +7,41 @@
 
 #include "../s21_string.h"
 
-void act_and_assert(const char *tested_string);
+void test_memchr(const void *tested_string, int tested_char, s21_size_t n);
+void test_memcmp(const void *tested_string_1, const void *tested_string_2, s21_size_t n);
+void test_memcpy(void *dest, const void *src, s21_size_t n);
+void test_memmove(void *dest, const void *src, s21_size_t n);
+void test_memset(void *str, int c, s21_size_t n);
+void test_strncat(char *dest, const char *src, s21_size_t n);
+void test_strchr(const char *str, int c);
+void test_strncmp(const char *tested_string_1, const char *tested_string_2, s21_size_t n);
+void test_strncpy(char *dest, const char *src, s21_size_t n);
+void test_strcspn(const char *tested_string_1, const char *tested_string_2);
+void test_strerror(int errnum);
+void test_strlen(const char *tested_string);
+void test_strpbrk(const char *tested_string_1, const char *tested_string_2);
+void test_strrchr(const char *tested_string, int tested_char);
+void test_strstr(const char *haystack, const char *needle);
+void test_strtok(char *tested_string, const char *delim);
 
+Suite *memchr_suite(void);
+Suite *memcmp_suite(void);
+Suite *memcpy_suite(void);
+Suite *memset_suite(void);
+Suite *strncat_suite(void);
+Suite *strchr_suite(void);
+Suite *strncmp_suite(void);
+Suite *strcspn_suite(void);
+Suite *strerror_suite(void);
 Suite *strlen_suite(void);
+Suite *strpbrk_suite(void);
+Suite *strrchr_suite(void);
+Suite *strstr_suite(void);
+Suite *strtok_suite(void);
+Suite *sprintf_suite(void);
+Suite *to_upper_suite(void);
+Suite *to_lower_suite(void);
+Suite *insert(void);
+Suite *trim(void);
 
 #endif

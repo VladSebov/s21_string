@@ -1,6 +1,6 @@
 #include "s21_tests.h"
 
-void act_and_assert(const char *tested_string) {
+void test_strlen(const char *tested_string) {
   // Act
   s21_size_t actual_result = s21_strlen(tested_string);
   size_t expected_result = strlen(tested_string);
@@ -10,24 +10,22 @@ void act_and_assert(const char *tested_string) {
 }
 
 START_TEST(string_length_is_15) {
-  // Arrange
-  char *tested_string = "Now it was time";
-
-  act_and_assert(tested_string);
+  test_strlen("Now it was time");
 }
 END_TEST
 
 START_TEST(empty_string) {
-  // Arrange
-  act_and_assert("");
+  test_strlen("");
 }
 END_TEST
 
 START_TEST(string_length_is_6) {
-  // Arrange
-  char *tested_string = "It was";
+  test_strlen("It was");
+}
+END_TEST
 
-  act_and_assert(tested_string);
+START_TEST(null_in_the_middle) {
+  test_strlen("It was\0 the great time");
 }
 END_TEST
 
@@ -38,7 +36,9 @@ Suite *strlen_suite(void) {
   tcase_add_test(tc, string_length_is_15);
   tcase_add_test(tc, empty_string);
   tcase_add_test(tc, string_length_is_6);
+  tcase_add_test(tc, null_in_the_middle);
 
   suite_add_tcase(s, tc);
   return s;
 }
+
