@@ -1,37 +1,40 @@
+#Variables for gcc:
 CC=gcc
 FLAGS=-std=c11 -Werror -Wall -Wextra
 ASAN:=#-fsanitize=address
-OBJ_DIR=./objs
-TEST_OBJ_DIR=./tests/objs
-C_FILES=$(shell find s21_*.c)
-H_FILES=$(shell find s21_*.h)
-TEST_C_FILES=$(shell find tests/s21_*.c)
-TEST_H_FILES=$(shell find tests/s21_*.h)
-OBJ_FILES=$(addprefix $(OBJ_DIR)/, $(notdir $(C_FILES:.c=.o)))
-TEST_OBJ_FILES=$(addprefix $(TEST_OBJ_DIR)/, $(notdir $(TEST_C_FILES:.c=.o)))
-TST_LIBS=$(shell pkg-config --cflags --libs check) #-pthread -lcheck_pic -pthread -lrt -lm -lsubunit
+#Our static library
 TARGET=s21_string.a
-MK:=mkdir -p
+#Directories for .o files
+OBJ_DIR=./objs
+TEST_OBJ_DIR=./tests_objs
+#Variables for compiling .o files used in s21_string.a 
+C_FILES=$(shell find s21_*.c)
+OBJ_FILES=$(addprefix $(OBJ_DIR)/, $(notdir $(C_FILES:.c=.o)))
+#Variables for compiling .o files used in unit-testing 
+TEST_C_FILES=$(shell find tests/s21_*.c)
+TEST_OBJ_FILES=$(addprefix $(TEST_OBJ_DIR)/, $(notdir $(TEST_C_FILES:.c=.o)))
+TEST_LIBS=$(shell pkg-config --cflags --libs check) #-pthread -lcheck_pic -pthread -lrt -lm -lsubunit
 
-all: test s21_string.a gcov_report
+all: test  gcov_report
 
-$(TARGET): $(OBJ_FILES)
+s21_string.a: $(OBJ_FILES)
 	ar rc $(TARGET) $(OBJ_FILES)
 	ranlib $(TARGET)
 
 $(OBJ_FILES): $(C_FILES)
-	@$(MK) $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(FLAGS) -o $@ -c $<
 
 test: $(TARGET) $(TEST_OBJ_FILES) $(TEST_OBJ_DIR)/main.o 
-	$(CC) $(FLAGS) $(TEST_OBJ_FILES) $(TEST_OBJ_DIR)/main.o -o test $(TST_LIBS) -L. $(TARGET)
+	$(CC) $(FLAGS) $(TEST_OBJ_FILES) $(TEST_OBJ_DIR)/main.o -o test $(TEST_LIBS) -L. $(TARGET)
+	./test
 
 $(TEST_OBJ_FILES): $(TEST_C_FILES)
-	@$(MK) $(TEST_OBJ_DIR)
+	mkdir -p $(TEST_OBJ_DIR)
 	$(CC) $(FLAGS) -o $@ -c $<
 
 $(TEST_OBJ_DIR)/main.o: main.c 
-	@$(MK) $(TEST_OBJ_DIR)
+	mkdir -p $(TEST_OBJ_DIR)
 	$(CC) $(FLAGS) main.c -c -o $(TEST_OBJ_DIR)/main.o
 
 	
@@ -51,16 +54,9 @@ check:
 	clang-format -n tests/*.c
 	clang-format -n tests/*.h
 	cppcheck --enable=all --suppress=missingIncludeSystem *.c *.h
+	
 clean:
 	rm -rf $(TARGET)
 	rm -rf $(OBJ_DIR)
 	rm -rf $(TEST_OBJ_DIR)
 	rm -rf test 
-
-clean_with_tests:
-	rm -rf $(TARGET)
-	rm -rf actual_output.txt
-	rm -rf expected_output.txt
-	rm -rf valgrind_results
-
-rebuild: clean s21_cat
