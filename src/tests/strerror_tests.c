@@ -1,9 +1,9 @@
 #include "s21_tests.h"
 
-void test_strrchr(const char *tested_string, int tested_char) {
+void test_strerror(int errnum) {
   // Act
-  char *actual_result = s21_strrchr(tested_string, tested_char);
-  char *expected_result = strrchr(tested_string, tested_char);
+  char *actual_result = s21_strerror(errnum);
+  char *expected_result = strerror(errnum);
 
   // Assert
   ck_assert_ptr_eq(actual_result, expected_result);
@@ -39,9 +39,9 @@ START_TEST(newline_in_the_middle) {
 }
 END_TEST
 
-Suite *strrchr_suite(void) {
-  Suite *s = suite_create("strrchr_suite");
-  TCase *tc = tcase_create("strrchr_tc");
+Suite *strstr_suite(void) {
+  Suite *s = suite_create("strstr_suite");
+  TCase *tc = tcase_create("strstr_tc");
 
   tcase_add_test(tc, last_occurance_is_not_null);
   tcase_add_test(tc, last_occurance_is_null);
