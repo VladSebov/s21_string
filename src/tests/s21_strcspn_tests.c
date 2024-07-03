@@ -9,9 +9,7 @@ void test_strcspn(const char *string_1, const char *string_2) {
   ck_assert_int_eq(actual_result, expected_result);
 }
 
-START_TEST(jghf) {
-  test_strcspn("Now it was time", "jhgf");
-}
+START_TEST(jghf) { test_strcspn("Now it was time", "jhgf"); }
 END_TEST
 
 Suite *strcspn_suite(void) {

@@ -3,21 +3,11 @@
 #include "tests/s21_tests.h"
 
 int main() {
-  Suite *suits_set[] = {memchr_suite(),
-                        memcmp_suite(),
-                        memcpy_suite(),
-                        memset_suite(),
-                        strchr_suite(),
-                        strcspn_suite(),
-                        strlen_suite(),
-                        strncat_suite(),
-                        strncmp_suite(),
-                        strncpy_suite(),
-                        strpbrk_suite(),
-                        strrchr_suite(),
-                        strstr_suite(),
-                        strtok_suite(),
-                        NULL};
+  Suite *suits_set[] = {memchr_suite(),  memcmp_suite(),  memcpy_suite(),
+                        memset_suite(),  strchr_suite(),  strcspn_suite(),
+                        strlen_suite(),  strncat_suite(), strncmp_suite(),
+                        strncpy_suite(), strpbrk_suite(), strrchr_suite(),
+                        strstr_suite(),  strtok_suite(),  NULL};
   return (run_tests(suits_set) == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 

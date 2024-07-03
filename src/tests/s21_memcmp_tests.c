@@ -1,7 +1,6 @@
 #include "s21_tests.h"
 
-void test_memcmp(const void *string_1, const void *string_2,
-                 s21_size_t n) {
+void test_memcmp(const void *string_1, const void *string_2, s21_size_t n) {
   // Act
   int actual_result = memcmp(string_1, string_2, n);
   int expected_result = memcmp(string_1, string_2, n);
@@ -10,7 +9,9 @@ void test_memcmp(const void *string_1, const void *string_2,
   ck_assert_int_eq(actual_result, expected_result);
 }
 
-START_TEST(bytes_are_equal) { test_memcmp("Now it was time", "Now it was mine", 6); }
+START_TEST(bytes_are_equal) {
+  test_memcmp("Now it was time", "Now it was mine", 6);
+}
 END_TEST
 
 Suite *memcmp_suite(void) {

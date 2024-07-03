@@ -9,14 +9,10 @@ void test_strpbrk(const char *string_1, const char *string_2) {
   ck_assert_ptr_eq(actual_result, expected_result);
 }
 
-START_TEST(occurance_is_not_null) {
-  test_strpbrk("Now it was time", "i");
-}
+START_TEST(occurance_is_not_null) { test_strpbrk("Now it was time", "i"); }
 END_TEST
 
-START_TEST(occurance_is_null) {
-  test_strpbrk("Now it was time", "f");
-}
+START_TEST(occurance_is_null) { test_strpbrk("Now it was time", "f"); }
 END_TEST
 
 Suite *strpbrk_suite(void) {

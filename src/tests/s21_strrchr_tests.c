@@ -9,34 +9,22 @@ void test_strrchr(const char *tested_string, int tested_char) {
   ck_assert_ptr_eq(actual_result, expected_result);
 }
 
-START_TEST(last_occurance_is_not_null) {
-  test_strrchr("Now it was time", 'i');
-}
+START_TEST(last_occurance_is_not_null) { test_strrchr("Now it was time", 'i'); }
 END_TEST
 
-START_TEST(last_occurance_is_null) {
-  test_strrchr("Now it was time", 'f');
-}
+START_TEST(last_occurance_is_null) { test_strrchr("Now it was time", 'f'); }
 END_TEST
 
-START_TEST(zero_in_the_middle) {
-  test_strrchr("Now it was\0 time", 'i');
-}
+START_TEST(zero_in_the_middle) { test_strrchr("Now it was\0 time", 'i'); }
 END_TEST
 
-START_TEST(empty_string) {
-  test_strrchr("", 'i');
-}
+START_TEST(empty_string) { test_strrchr("", 'i'); }
 END_TEST
 
-START_TEST(zero_char) {
-  test_strrchr("Now it was time", '\0');
-}
+START_TEST(zero_char) { test_strrchr("Now it was time", '\0'); }
 END_TEST
 
-START_TEST(newline_in_the_middle) {
-  test_strrchr("Now it was\n time", 'i');
-}
+START_TEST(newline_in_the_middle) { test_strrchr("Now it was\n time", 'i'); }
 END_TEST
 
 Suite *strrchr_suite(void) {

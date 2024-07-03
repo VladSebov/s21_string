@@ -10,7 +10,8 @@ void test_memset(void *str, int c, s21_size_t n) {
 }
 
 START_TEST(pasting_b_in_first_6_bytes) {
-  test_memset("Now it was time", 'b', 6);
+  char dest[] = "Now it was time";
+  test_memset(dest, 'b', 6);
 }
 END_TEST
 

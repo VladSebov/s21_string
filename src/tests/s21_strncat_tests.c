@@ -6,14 +6,15 @@ void test_strncat(char *dest, const char *src, s21_size_t n) {
   char *expected_result = strncat(dest, src, n);
 
   // Assert
-  ck_assert_str_eq(actual_result, expected_result);
+  ck_assert_pstr_eq(actual_result, expected_result);
 }
 
 START_TEST(test) {
-  test_strncat("Now it was time", "test", 6);
+  char dest[15] = "test: ";
+  char src[] = "Now it was time";
+  test_strncat(dest, src, 3);
 }
 END_TEST
-
 
 Suite *strncat_suite(void) {
   Suite *s = suite_create("strncat_suite");

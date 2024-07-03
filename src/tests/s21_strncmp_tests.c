@@ -2,7 +2,7 @@
 
 void test_strncmp(const char *string_1, const char *string_2, s21_size_t n) {
   // Act
-  int actual_result = strncmp(string_1, string_2, n);
+  int actual_result = s21_strncmp(string_1, string_2, n);
   int expected_result = strncmp(string_1, string_2, n);
 
   // Assert

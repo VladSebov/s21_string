@@ -2,21 +2,17 @@
 
 void test_strstr(const char *haystack, const char *needle) {
   // Act
-  char *actual_result = strstr(haystack, needle);
+  char *actual_result = s21_strstr(haystack, needle);
   char *expected_result = strstr(haystack, needle);
 
   // Assert
-  ck_assert_str_eq(actual_result, expected_result);
+  ck_assert_pstr_eq(actual_result, expected_result);
 }
 
-START_TEST(occurance_is_not_null) {
-  test_strstr("Now it was time", "it was");
-}
+START_TEST(occurance_is_not_null) { test_strstr("Now it was time", "it was"); }
 END_TEST
 
-START_TEST(occurance_is_null) {
-  test_strstr("Now it was time", "If I could");
-}
+START_TEST(occurance_is_null) { test_strstr("Now it was time", "If I could"); }
 END_TEST
 
 START_TEST(needle_larger_than_haystack) {
@@ -29,24 +25,16 @@ START_TEST(needle_larger_than_haystack_2) {
 }
 END_TEST
 
-START_TEST(zero_in_the_middle) {
-  test_strstr("Now it was\0 time", "time");
-}
+START_TEST(zero_in_the_middle) { test_strstr("Now it was\0 time", "time"); }
 END_TEST
 
-START_TEST(empty_haystack) {
-  test_strstr("", "nevermind");
-}
+START_TEST(empty_haystack) { test_strstr("", "nevermind"); }
 END_TEST
 
-START_TEST(empty_needle) {
-  test_strstr("Now it was time", "");
-}
+START_TEST(empty_needle) { test_strstr("Now it was time", ""); }
 END_TEST
 
-START_TEST(newline_in_the_middle) {
-  test_strstr("Now it was\n time", "time");
-}
+START_TEST(newline_in_the_middle) { test_strstr("Now it was\n time", "time"); }
 END_TEST
 
 Suite *strstr_suite(void) {
