@@ -2,7 +2,7 @@
 
 void test_strchr(const char *str, int c) {
   // Act
-  char *actual_result = strchr(str, c);
+  char *actual_result = s21_strchr(str, c);
   char *expected_result = strchr(str, c);
 
   // Assert
