@@ -10,7 +10,9 @@ void test_memcpy(void *dest, const void *src, s21_size_t n) {
 }
 
 START_TEST(copying_first_6_bytes) {
-  test_memcpy("Now it was time", "", 6);
+  char dest[] = "Now it was time";
+  char src[] = "xxxxxx...";
+  test_memcpy(dest, src, 6);
 }
 END_TEST
 
